@@ -9,11 +9,17 @@ namespace RealEstateApp.Models
         [Required]
         public int EstateTypeId { get; set; }
         public EstateType EstateType { get; set; }
+
+
+
+        public ICollection<EstateImage>? Images { get; set; } = new List<EstateImage>();
+
         [Required]
         public string Address { get; set; }
-        [Required]
+
         public string Title { get; set; }
         public string Description { get; set; }
+
         [Required]
         public bool IsSold { get; set; }
         [Required]

@@ -5,7 +5,8 @@ namespace RealEstateApp.Models
     public class EstateType
     {
         [Key]
-        public int EstateTypeId { get; set; }   
+        public int EstateTypeId { get; set; }
+        [Required]
         public string TypeName { get; set; }
     }
 }
