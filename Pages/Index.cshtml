@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Globalization;
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -8,6 +9,18 @@
     <h1 class="display-4">Welcome</h1>
     <h4>Estates for sale</h4>
     *Insert estates here*
-    <div><h4>@Model.Estates.FirstOrDefault(x=>x.EstateId == 1);</h4></div>
+    <div>@{
+            var estate = Model.Estates.Where(x => x.EstateId == 1);
+            foreach (var i in estate)
+            {
+                <div>
+                <h3>@i.Address</h3>
+                <p>@i.EstateType.TypeName</p>
+                    <p>@i.Price.ToString("C", CultureInfo.CurrentCulture)</p>
+
+                    <!-- not working yet: <img src="@i.Images.FirstOrDefault(x=>x.EstateImageId > 1).Url" style="height: 200px"> -->
+                </div>
+            }
+        }</div>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
