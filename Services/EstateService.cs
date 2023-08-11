@@ -16,6 +16,9 @@ namespace RealEstateApp.Services
         }
 
         //Get all estates.
-        public IEnumerable<Estate> GetAll() { return _context.Estate.Include(e => e.EstateType).Include(i => i.Images).ToList(); }
+        public IEnumerable<Estate> GetAll() 
+        {
+            return _context.Estate.Include(e => e.EstateType).Include(i => i.Images).ToList();
+        }
     }
 }

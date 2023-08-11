@@ -5,22 +5,29 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <h4>Estates for sale</h4>
-    *Insert estates here*
-    <div>@{
-            var estate = Model.Estates.Where(x => x.EstateId == 1);
-            foreach (var i in estate)
-            {
-                <div>
-                <h3>@i.Address</h3>
-                <p>@i.EstateType.TypeName</p>
-                    <p>@i.Price.ToString("C", CultureInfo.CurrentCulture)</p>
+<div class="container mt-5 text-center">
+    <h1 class="display-4 mb-4">Welcome</h1>
+    <h4 class="mb-4">Estates for sale</h4>
 
-                    <!-- not working yet: <img src="@i.Images.FirstOrDefault(x=>x.EstateImageId > 1).Url" style="height: 200px"> -->
+    <div class="row">
+
+        @{
+            int counter = 0;
+            foreach (var i in Model.Estates)
+            {
+                counter++;
+                <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@i.Images.FirstOrDefault(x => x.EstateImageId == counter)?.Url" class="card-img-top" alt="Estate image">
+                    <div class="card-body">
+                        <h5 class="card-title">@i.Address</h5>
+                        <p class="card-text">@i.EstateType.TypeName</p>
+                        <p class="card-text">@i.Price.ToString("C", CultureInfo.CurrentCulture)</p>
+                    </div>
                 </div>
-            }
-        }</div>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+            </div>
+        }
+        }
+    </div>
+    <p class="mt-4">Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
