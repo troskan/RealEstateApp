@@ -1,0 +1,22 @@
+﻿@page
+@model RealEstateApp.Pages.ControlPanelModel
+@{
+    ViewData["Title"] = "Control Panel";
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="container mt-5">
+    <h1>@ViewData["Title"]</h1>
+    <p>Welcome to the Control Panel.</p>
+
+    <div class="d-flex mt-3">
+        <button class="btn btn-primary m-3" onclick="location.href='/AddHouse'">Add Estate</button>
+        <button class="btn btn-warning m-3" onclick="location.href='/EditHouse'">Edit Estate</button>
+        <button class="btn btn-danger m-3" onclick="location.href='/DeleteHouse'">Delete Estate</button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
