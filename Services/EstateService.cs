@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RealEstateApp.Data;
 using RealEstateApp.Models;
-using System.Text.Json;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RealEstateApp.Services
 {
@@ -9,16 +10,48 @@ namespace RealEstateApp.Services
     {
         private readonly ApplicationDbContext _context;
 
-        //DI
-        public EstateService( ApplicationDbContext context)
+        public EstateService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        //Get all estates.
-        public IEnumerable<Estate> GetAll() 
+        // CREATE
+        public void Create(Estate estate)
+        {
+            _context.Estate.Add(estate);
+            _context.SaveChanges();
+        }
+
+        // READ
+        public IEnumerable<Estate> GetAll()
         {
             return _context.Estate.Include(e => e.EstateType).Include(i => i.Images).ToList();
+        }
+
+        public Estate GetById(int id)
+        {
+            return _context.Estate
+                          .Include(e => e.EstateType)
+                          .Include(i => i.Images)
+                          .FirstOrDefault(e => e.EstateId == id);
+        }
+
+        // UPDATE
+        public void Update(Estate estate)
+        {
+            _context.Entry(estate).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        // DELETE
+        public void Delete(int id)
+        {
+            var estate = _context.Estate.Find(id);
+            if (estate != null)
+            {
+                _context.Estate.Remove(estate);
+                _context.SaveChanges();
+            }
         }
     }
 }
