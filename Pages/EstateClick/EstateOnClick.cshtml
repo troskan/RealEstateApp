@@ -1,0 +1,20 @@
+﻿@page
+@using System.Globalization;
+@model RealEstateApp.Pages.EstateClick.EstateOnClickModel
+@{
+    ViewData["Title"] = "Estate";
+}
+<div>
+    <div class="d-flex flex-column justify-content-center">
+        <div class="justify-content-center">
+            <img src="@Model.CurrentEstate.Images.FirstOrDefault(x => x.EstateId == Model.CurrentEstate.EstateId)?.Url" style="height:500px" alt="Estate image">
+            <div class="card-body">
+                <h5 class="card-title">@Model.CurrentEstate.Address</h5>
+                <p class="card-text">@Model.CurrentEstate.EstateType.TypeName</p>
+                <p class="card-text">@Model.CurrentEstate.Price.ToString("C", CultureInfo.CurrentCulture)</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+

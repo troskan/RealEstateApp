@@ -17,17 +17,21 @@
             {
                 counter++;
                 <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="@i.Images.FirstOrDefault(x => x.EstateImageId == counter)?.Url" class="card-img-top" alt="Estate image">
-                    <div class="card-body">
-                        <h5 class="card-title">@i.Address</h5>
-                        <p class="card-text">@i.EstateType.TypeName</p>
-                        <p class="card-text">@i.Price.ToString("C", CultureInfo.CurrentCulture)</p>
-                    </div>
-                </div>
+                    <a href="@Url.Page("EstateClick/EstateOnClick", new { id = i.EstateId })" class="text-decoration-none text-dark">
+                        <div class="card card-hoverable">
+                            <img src="@i.Images.FirstOrDefault(x => x.EstateId == i.EstateId)?.Url" class="card-img-top" alt="Estate image">
+                            <div class="card-body">
+                                <h5 class="card-title">@i.Address</h5>
+                                <p class="card-text">@i.EstateType.TypeName</p>
+                                <p class="card-text">@i.Price.ToString("C", CultureInfo.CurrentCulture)</p>
+                            </div>
+                        </div>
+                    </a>
+
             </div>
         }
         }
     </div>
     <p class="mt-4">About the creator of this page: <a href="https://alvin-strandberg.se">https://alvin-strandberg.se</a>.</p>
 </div>
+

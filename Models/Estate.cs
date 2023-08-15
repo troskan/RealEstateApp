@@ -8,7 +8,7 @@ namespace RealEstateApp.Models
         public int EstateId { get; set; }
         [Required]
         public int EstateTypeId { get; set; }
-        public EstateType EstateType { get; set; }
+        public EstateType? EstateType { get; set; }
 
 
 
