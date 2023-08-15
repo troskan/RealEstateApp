@@ -12,6 +12,7 @@ namespace RealEstateApp.Data
         }
         public DbSet<Estate> Estate { get; set; }
         public DbSet<EstateType> EstateType { get; set; }
+        public DbSet<EstateImage> EstateImage { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

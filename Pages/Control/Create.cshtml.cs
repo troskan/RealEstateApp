@@ -32,7 +32,7 @@ namespace RealEstateApp.Pages.Control_Panel
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string ImageURL)
         {
             if (!ModelState.IsValid)
             {
@@ -48,25 +48,26 @@ namespace RealEstateApp.Pages.Control_Panel
                 return Page();
             }
 
-            if (_context.Estate == null)
-            {
-                _logger.LogInformation("Database context's Estate DbSet is null");
-
-                return Page();
-            }
-
-            if (Estate == null)
-            {
-                _logger.LogInformation("Estate object is null.");
-                return Page();
-            }
             if (!ModelState.IsValid || _context.Estate == null || Estate == null)
             {
                 return Page();
             }
 
+
             _context.Estate.Add(Estate);
             await _context.SaveChangesAsync();
+
+            if (!string.IsNullOrEmpty(ImageURL))
+            {
+                var estateImage = new EstateImage
+                {
+                    EstateId = Estate.EstateId, // the ID will be generated after SaveChangesAsync
+                    Url = ImageURL
+                };
+
+                _context.EstateImage.Add(estateImage);
+                await _context.SaveChangesAsync();
+            }
             _logger.LogInformation("OnPostAsync finished.");
             return RedirectToPage("./Index");
         }

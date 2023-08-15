@@ -21,3 +21,9 @@ body {
   margin-bottom: 60px;
   background-color:snow;
 }
+
+.card-hoverable:hover {
+    transform: scale(1.05); /* Slightly scale the card */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: transform 0.3s; /* Smooth transition */
+}

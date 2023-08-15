@@ -26,7 +26,7 @@ namespace RealEstateApp.Pages.Control_Panel
             if (_context.Estate != null)
             {
                 Estate = await _context.Estate
-                .Include(e => e.EstateType).ToListAsync();
+                .Include(e => e.EstateType).Include(r => r.Images).ToListAsync();
             }
         }
     }

@@ -14,6 +14,8 @@
     <thead>
         <tr>
             <th>
+                Picture
+            </th>            <th>
                 @Html.DisplayNameFor(model => model.Estate[0].EstateType)
             </th>
             <th>
@@ -38,6 +40,8 @@
 @foreach (var item in Model.Estate) {
         <tr>
             <td>
+                    <img src=@item.Images.FirstOrDefault()?.Url alt="Estate Image" style="height:50px; overflow:hidden">
+            </td>            <td>
                 @Html.DisplayFor(modelItem => item.EstateType.TypeName)
             </td>
             <td>
